@@ -6,12 +6,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-void analyse_arbre(arbre racine, int *nb_esp, int *nb_carac)
-{
-       printf ("<<<<< À faire: fonction analyse_arbre fichier " __FILE__ " >>>>>\n");
+
+// nb_esp et nb_carac sont égales a 0 par défaut si elles no sont pas fournies
+void analyse_arbre(arbre racine, int *nb_esp, int *nb_carac){
+       if (racine==NULL)
+              return;
+       if (feuille(racine))
+              (*nb_esp)++;
+       else
+              (*nb_carac)++;
+       analyse_arbre(racine->gauche,nb_esp,nb_carac);
+       analyse_arbre(racine->droit,nb_esp,nb_carac);
+       
 }
-
-
 
 /* ACTE II */
 /* Recherche l'espece dans l'arbre. Modifie la liste passée en paramètre pour y

@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     int nombre_especes; /* Ne pas initialiser ici, c'est analyse_arbre */
     int nombre_caract;  /* qui doit s'en charger */
 
-    affiche_arbre(mon_arbre);
+    affiche_arbre(&mon_arbre);
 
     analyse_arbre(mon_arbre, &nombre_especes, &nombre_caract);
 

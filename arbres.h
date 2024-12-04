@@ -29,8 +29,12 @@ noeud* nouveau_noeud(void);
  */
 arbre lire_arbre(FILE *f);
 
+int feuille(arbre racine);
+
 /* Fonction d'affichage, à remplir */
-void affiche_arbre(arbre);
+void annexe_affiche(arbre racine , FILE *f);
+
+void affiche_arbre(arbre *racine);
 
 
 /* Macros pour de l'affichage uniquement si DEBUG est != 0 */
