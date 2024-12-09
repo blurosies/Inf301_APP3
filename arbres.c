@@ -113,7 +113,7 @@ void annexe_affiche(arbre racine , FILE *f){
             annexe_affiche(racine->droit , f);
 }
 }
-
+// dot -Tpng -o arbre.png arbre.dot
 void affiche_arbre(arbre *racine){
     FILE *f=NULL;
     f=fopen("arbre.dot" ,"w");
