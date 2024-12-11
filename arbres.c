@@ -104,6 +104,9 @@ int feuille(arbre racine){
 void annexe_affiche(arbre racine , FILE *f){
     if(racine==NULL)
         return;
+    if(feuille(racine)){
+        fprintf(f,"%s", racine->valeur );
+    }
     if(racine->gauche!=NULL){
             fprintf(f,"%s -> %s [label = \"non\"]\n", racine->valeur , racine->gauche->valeur);
             annexe_affiche(racine->gauche , f);
