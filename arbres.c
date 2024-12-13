@@ -4,8 +4,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "arbres.h"
+
+
+element_t * nv_element(arbre racine){
+    element_t* e=malloc(sizeof(element_t));
+    e->racine=racine;
+    e->suivant=NULL;
+    return e;
+}
+
+void ajoute_en_queue(file_t *file , arbre racine){
+    if (file->tete == NULL){
+        element_t * nv = nv_element(racine);
+        file->tete=nv; 
+    }else{
+        element_t *curr=file->tete;
+        while (curr->suivant!=NULL){
+            curr=curr->suivant;
+        }
+        element_t * nv = nv_element(racine);
+        curr->suivant=nv;
+    }
+}
+arbre defiler(file_t *file){
+    element_t * temp = file->tete;
+    file->tete=file->tete->suivant;
+    return temp->racine;
+}
+
 
 noeud *nouveau_noeud(void)
 {

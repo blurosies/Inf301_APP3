@@ -84,10 +84,32 @@ int ajouter_espece(arbre *a, char *espece, cellule_t *seq) {
  * Appeler la fonction avec fout=stdin pour afficher sur la sortie standard.
  */
 
-
-void afficher_par_niveau(arbre racine, FILE *fout)
-{ 
-
+void afficher_par_niveau(arbre racine, FILE *fout){ 
+       if(racine==NULL){
+              return;
+       }
+       int cpt=0, cpt_suivant=0 , cpt_arbre=1;
+       file_t *stock=malloc(sizeof(file_t));
+       element_t * temp =nv_element(racine);
+       stock->tete=temp;
+       while (stock->tete!=NULL && !feuille(stock->tete->racine)){
+              arbre a=defiler(stock); 
+              fprintf(fout,"%s " , a->valeur);
+              cpt++;
+              if (a->gauche!=NULL && !(feuille(a->gauche))){
+                     ajoute_en_queue(stock, a->gauche);
+                     cpt_suivant++;}
+              if (a->droit!=NULL && !(feuille(a->droit))){
+                     ajoute_en_queue(stock, a->droit);
+                     cpt_suivant++;}
+              if (cpt==cpt_arbre){
+                     fprintf(fout,"\n");
+              cpt_arbre=cpt_suivant;
+              cpt_suivant=0;
+              cpt=0;
+              }
+       }
+       return;
 }
 
 // Acte 4

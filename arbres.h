@@ -19,6 +19,22 @@ struct noeud_s {
     arbre droit;
 };
 
+struct element {
+	arbre racine;
+	struct element* suivant;
+};
+typedef struct element element_t;
+
+struct file {
+	element_t *tete;
+};
+typedef struct file file_t;
+
+element_t * nv_element(arbre racine);
+
+void ajoute_en_queue(file_t *file, arbre racine);
+
+arbre defiler(file_t *file);
 
 /* Crée un nouveau nœud et initialise ses champs à null */
 noeud* nouveau_noeud(void);
