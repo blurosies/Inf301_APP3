@@ -14,10 +14,27 @@ Nom2 - prénom2 : Sadek Mira
 Si vous avez des commentaires, remarques etc. pour le rendu, vous pouvez les 
 mettre ici:
 
-...
-...
-...
+! Acte 4 non fait
 
+analyse de complexité:
+
+Soit n.g la longueure de l'arbre gauche
+Soit n.d la longueure de l'arbre droit
+
+acte 1:
+analyse_arbre = o(n.g + n.d)
+
+acte 2:
+rechercher_espece = o(n.g + n.d)
+
+acte 3:
+  a:
+  ajouter_espece = o(n.g + n.d)
+
+  b:
+  Soit n la longueure de 'stock'
+  ajouter_en_queue= o(n)
+  afficher_par_niveau= o(n^2)
 
 
 Travail à effectuer:

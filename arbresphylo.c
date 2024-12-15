@@ -26,9 +26,9 @@ void analyse_arbre(arbre racine, int *nb_esp, int *nb_carac){
  */
 int rechercher_espece(arbre racine, char *espece, liste_t *seq){
 
-       if (racine==NULL)
+       if (racine==NULL) // pas retrouver
               return 1;
-       if ((strcmp(racine->valeur, espece) == 0)&& feuille(racine))
+       if ((strcmp(racine->valeur, espece) == 0)&& feuille(racine)) // on oubli pas de verifier que c'est une espece
               return 0;
 
        if (rechercher_espece(racine->gauche, espece, seq) == 0)
@@ -56,7 +56,7 @@ int ajouter_espece(arbre *a, char *espece, cellule_t *seq) {
         } else if (seq != NULL && strcmp((*a)->valeur, seq->val) == 0) { 
             ajouter_espece(&(*a)->droit, espece, seq->suivant);
 
-        } else if (seq != NULL && feuille(*a)) { 
+        } else if (seq != NULL && feuille(*a)) { //creer noeud, mettre la feuille a gauche et notre espece a droite apres seq
             noeud* nv_arbre = nouveau_noeud();
             nv_arbre->valeur = (*a)->valeur;
             *a = nouveau_noeud();
@@ -64,10 +64,10 @@ int ajouter_espece(arbre *a, char *espece, cellule_t *seq) {
             ajouter_espece(&(*a)->droit, espece, seq->suivant);
             (*a)->gauche = nv_arbre;
 
-       } else if (seq != NULL){
+       } else if (seq != NULL){ // on parcour a gauche
             ajouter_espece(&(*a)->gauche, espece, seq);
 
-       } else if (seq==NULL && *a == NULL) {
+       } else if (seq==NULL && *a == NULL) { // une feuille juste avec l'espece
             *a = nouveau_noeud();
             (*a)->valeur = espece;
 
@@ -88,11 +88,12 @@ void afficher_par_niveau(arbre racine, FILE *fout){
        if(racine==NULL){
               return;
        }
+       // compteur d'arbres actuels, compteur d'arbre max dans le niveau, compteur d'arbres dans le niveau suivant
        int cpt=0, cpt_suivant=0 , cpt_arbre=1;
        file_t *stock=malloc(sizeof(file_t));
        element_t * temp =nv_element(racine);
        stock->tete=temp;
-       while (stock->tete!=NULL && !feuille(stock->tete->racine)){
+       while (stock->tete!=NULL && !feuille(stock->tete->racine)){//on ne veut pas les feuille car c'est des especes
               arbre a=defiler(stock); 
               fprintf(fout,"%s " , a->valeur);
               cpt++;
